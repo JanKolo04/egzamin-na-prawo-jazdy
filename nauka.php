@@ -103,6 +103,8 @@
 				<a class="btn btn-primary" id="specjalistyczny" href=nauka.php?pytanie=1&zakres_struktury=specjalistyczny>Specjalistyczny</a>
 			</div>
 		</div>
+
+		<a href="logout.php">Wyloguj się</a>
 	</div>
 
 

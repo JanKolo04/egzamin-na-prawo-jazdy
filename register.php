@@ -22,6 +22,8 @@
 
 	<?php
 
+		//add header, after registration move to login page
+
 		include("connection.php");
 
 		if(isset($_POST['submitRegister'])) {
@@ -57,6 +59,8 @@
 			if($query->num_rows == 0) {
 				$insert = "INSERT INTO users(Imie, Nazwisko, Email, Login, Password) VALUES('{$user_data['Name']}','{$user_data['Lastname']}','{$user_data['Email']}','{$user_data['Login']}','{$user_data['Passwd']}')";
 				$insert_query = mysqli_query($con, $insert);
+				//move into login site
+				header("Location: index.php");
 			}
 			else {
 				if($query_data['Login'] == $user_data['Login']) {
