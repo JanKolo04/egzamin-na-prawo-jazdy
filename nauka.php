@@ -12,8 +12,11 @@
 	<div id="main">
 	<?php
 	
+		//includes
 		include("connection.php");
+		include("additional_function.php");
 
+		//global varaibles
 		$pytanieID = $_GET['pytanie'];
 		$zakres_struktury = $_GET['zakres_struktury'];
 
@@ -102,6 +105,11 @@
 				<a class="btn btn-primary" id="podstawowy" href=nauka.php?pytanie=1&zakres_struktury=podstawowy>Podstawowy</a>
 				<a class="btn btn-primary" id="specjalistyczny" href=nauka.php?pytanie=1&zakres_struktury=specjalistyczny>Specjalistyczny</a>
 			</div>
+			<form method="POST">
+				<div>
+					<button class="btn btn-secondary" type="submit" name="save">Zapamiętaj</button>
+				</div>
+			</form>
 		</div>
 
 		<a href="logout.php">Wyloguj się</a>
@@ -116,10 +124,10 @@
 			let zakres = <?php echo json_encode($zakres_struktury); ?>;
 
 			if(zakres == "podstawowy") {
-				document.querySelector("#podstawowy").style="background-color: grey !important;";
+				document.querySelector("#podstawowy").className = "btn btn-secondary";
 			}
 			else {
-				document.querySelector("#specjalistyczny").style="background-color: grey !important;";
+				document.querySelector("#specjalistyczny").className = "btn btn-secondary";
 			}
 		}
 				

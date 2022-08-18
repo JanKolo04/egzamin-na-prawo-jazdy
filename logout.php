@@ -12,6 +12,7 @@
 			unset($_COOKIE['login']);
 			//remove cookie
 			setcookie('login', null, -1, '/');
+			setcookie('Id_user', null, -1, '/');
 			header("Location: index.php");
 		}
 
