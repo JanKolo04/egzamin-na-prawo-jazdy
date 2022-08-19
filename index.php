@@ -68,19 +68,9 @@
 				if($user_data['Passwd'] == $row['Password']) {
 					//set cookie with user id
 					setcookie("Id_user", $row['Id'], time() + (86400 * 30), "/");
-					//check for exist row with save question
-					$sql_get_save_question = "SELECT * FROM additional_data WHERE Id_user={$row['Id']}";
-					$query_get_save_question = mysqli_query($con, $sql_get_save_question);
+					//move into main page
+					header("Location: main.php");
 					
-					//if user have save question move to this question but if haven't move to first question
-					$row_save = mysqli_fetch_array($query_get_save_question);
-					if($query_get_save_question->num_rows != 0) {
-						$question = $row_save['Podstawowy'];
-						header("Location: nauka.php?pytanie=".$question."&zakres_struktury=podstawowy");
-					}
-					else {
-						header("Location: nauka.php?pytanie=1&zakres_struktury=podstawowy");
-					}
 				}
 				else {
 					echo "Hasło niepoprawne!";

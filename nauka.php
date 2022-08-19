@@ -59,10 +59,10 @@
 
 			echo "<div id='navigationMenu'>";
 			if($data_array['Id'] > 1) {
-				echo "<a class='btn btn-danger' href=nauka.php?pytanie=$previous&zakres_struktury=podstawowy>Poprzednie</a> ";
+				echo "<a class='btn btn-danger' href=nauka.php?pytanie=$previous&zakres_struktury=podstawowy&kategoria=B>Poprzednie</a> ";
 			}
 
-			echo "<a class='btn btn-success' href=nauka.php?pytanie=$next&zakres_struktury=podstawowy>Następne</a>";
+			echo "<a class='btn btn-success' href=nauka.php?pytanie=$next&zakres_struktury=podstawowy&kategoria=B>Następne</a>";
 			echo "</div>";
 			
 		}
@@ -89,10 +89,10 @@
 				";
 			echo "<div id='navigationMenu'>";
 			if($data_array['Id'] > 1) {
-				echo "<a class='btn btn-danger navigation' href=nauka.php?pytanie=$previous&zakres_struktury=specjalistyczny>Poprzednie</a> ";
+				echo "<a class='btn btn-danger navigation' href=nauka.php?pytanie=$previous&zakres_struktury=specjalistyczny&kategoria=B>Poprzednie</a> ";
 			}
 
-			echo "<a class='btn btn-success navigation' href=nauka.php?pytanie=$next&zakres_struktury=specjalistyczny>Następne</a>";
+			echo "<a class='btn btn-success navigation' href=nauka.php?pytanie=$next&zakres_struktury=specjalistyczny&kategoria=B>Następne</a>";
 			echo "</div>";
 			
 		}
