@@ -15,6 +15,7 @@
 		//includes
 		include("connection.php");
 		include("additional_function.php");
+		include("answer.php");
 
 		//global varaibles
 		$pytanieID = $_GET['pytanie'];
@@ -52,8 +53,10 @@
 						</object>
 
 						<p>".$data_array['Pytanie']."</p></br>
-						<button class='answer'>Tak</button>
-						<button class='answer'>Nie</button>
+						<form method='POST'>
+							<button type='submit' value='T' name='answer' class='btn btn-primary'>Tak</button>
+							<button type='submit' value='N' name='answer' class='btn btn-primary'>Nie</button>
+						</form>
 					</div>
 				";
 
@@ -82,9 +85,9 @@
 				"	
 					<div id='questionAndAnswer'>	
 						<p>".$data_array['Pytanie']."</p></br>
-						<button class='answer'>".$data_array['Odpowiedz_A']."</button>
-						<button class='answer'>".$data_array['Odpowiedz_B']."</button>
-						<button class='answer'>".$data_array['Odpowiedz_C']."</button>
+						<button type='submit' value='A' name='answer' class='answer'>".$data_array['Odpowiedz_A']."</button>
+						<button type='submit' value='B' name='answer' class='answer'>".$data_array['Odpowiedz_B']."</button>
+						<button type='submit' value='C' name='answer' class='answer'>".$data_array['Odpowiedz_C']."</button>
 					</div>
 				";
 			echo "<div id='navigationMenu'>";
@@ -119,6 +122,7 @@
 
 
 	<script type="text/javascript">
+
 		
 		function change_button_color() {
 			let zakres = <?php echo json_encode($zakres_struktury); ?>;
@@ -136,6 +140,7 @@
 		//add div into another div
 		let holderForA = document.querySelector("#holderForA");
 		holderForA.appendChild(document.querySelector("#navigationMenu"));
+
 	
 
 	</script>
