@@ -29,7 +29,7 @@
 		}
 
 		function get_data_podstawowe() {
-			global $con, $pytanieID;
+			global $con, $pytanieID, $classNameT, $classNameN;
 
 			//get data from table pytania
 			$sql = "SELECT * FROM pytania_podstawowe WHERE Id=$pytanieID";
@@ -54,8 +54,8 @@
 
 						<p>".$data_array['Pytanie']."</p></br>
 						<form method='POST'>
-							<button type='submit' value='T' name='answer' class='btn btn-primary'>Tak</button>
-							<button type='submit' value='N' name='answer' class='btn btn-primary'>Nie</button>
+							<button type='submit' value='T' name='answer' class='$classNameT'>Tak</button>
+							<button type='submit' value='N' name='answer' class='$classNameN'>Nie</button>
 						</form>
 					</div>
 				";
@@ -71,7 +71,7 @@
 		}
 
 		function get_data_specjalistyczne() {
-			global $con, $pytanieID;
+			global $con, $pytanieID, $classNameA, $classNameB, $classNameC;
 
 			//get data from table pytania
 			$sql = "SELECT * FROM pytania_specjalistyczne WHERE Id=$pytanieID";
@@ -82,13 +82,14 @@
 			$previous = ($data_array['Id']) - 1;
 
 			echo
-				"	
-					<div id='questionAndAnswer'>	
-						<p>".$data_array['Pytanie']."</p></br>
-						<button type='submit' value='A' name='answer' class='answer'>".$data_array['Odpowiedz_A']."</button>
-						<button type='submit' value='B' name='answer' class='answer'>".$data_array['Odpowiedz_B']."</button>
-						<button type='submit' value='C' name='answer' class='answer'>".$data_array['Odpowiedz_C']."</button>
-					</div>
+				"	<form method='POST'>
+						<div id='questionAndAnswer'>
+							<p>".$data_array['Pytanie']."</p>
+							<button type='submit' value='A' name='answer' class='$classNameA'>".$data_array['Odpowiedz_A']."</button>
+							<button type='submit' value='B' name='answer' class='$classNameB'>".$data_array['Odpowiedz_B']."</button>
+							<button type='submit' value='C' name='answer' class='$classNameC'>".$data_array['Odpowiedz_C']."</button>
+						</div>
+					</form>
 				";
 			echo "<div id='navigationMenu'>";
 			if($data_array['Id'] > 1) {
@@ -105,8 +106,8 @@
 
 		<div id="holderForA">
 			<div id="categoryButtons">
-				<a class="btn btn-primary" id="podstawowy" href=nauka.php?pytanie=1&zakres_struktury=podstawowy>Podstawowy</a>
-				<a class="btn btn-primary" id="specjalistyczny" href=nauka.php?pytanie=1&zakres_struktury=specjalistyczny>Specjalistyczny</a>
+				<a class="btn btn-primary" id="podstawowy" href=nauka.php?pytanie=1&zakres_struktury=podstawowy&kategoria=B>Podstawowy</a>
+				<a class="btn btn-primary" id="specjalistyczny" href=nauka.php?pytanie=1&zakres_struktury=specjalistyczny&kategoria=B>Specjalistyczny</a>
 			</div>
 			<form method="POST">
 				<div>

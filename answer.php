@@ -10,6 +10,13 @@
 
 		include("connection.php");
 
+		//class name for answer button
+		$classNameT = "btn btn-primary";
+		$classNameN = "btn btn-primary";
+		$classNameA = "btn btn-primary";
+		$classNameB = "btn btn-primary";
+		$classNameC = "btn btn-primary";
+
 
 		if(isset($_POST['answer'])) {
 			check_answer();
@@ -51,6 +58,31 @@
 			return $correct_answer;
 		}
 
+		function change_color($post, $class) {
+			global $classNameT, $classNameN, $classNameA, $classNameB, $classNameC;
+			switch ($post) {
+				case "T":
+					$classNameT = $class;
+					break;
+				
+				case "N":
+					$classNameN = $class;
+					break;
+
+				case "A":
+					$classNameA = $class;
+					break;
+				
+				case "B":
+					$classNameB = $class;
+					break;
+
+				case "C":
+					$classNameC = $class;
+					break;
+			}	
+		}
+
 
 		function check_answer() {
 			global $correct_answer;
@@ -60,10 +92,10 @@
 
 			//button background color
 			if($correct_answer == $_POST['answer']) {
-				echo "Odpowiedź poprawna";
+				change_color($_POST['answer'], "btn btn-success");
 			}
 			else {
-				echo "Odpowiedź niepoprwna";
+				change_color($_POST['answer'], "btn btn-danger");
 			}
 		}
 
