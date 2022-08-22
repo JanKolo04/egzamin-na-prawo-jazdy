@@ -1,0 +1,136 @@
+/*----------MAIN-----------*/
+#holder {
+	height: 430px;
+	width: 450px;
+	margin: auto;
+	border: none;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+}
+
+#textHolder {
+	width: 100%;
+	padding: 5px 0px;
+	text-align: center;
+	margin-top: 35px;
+}
+
+#textHolder * {
+	margin-top: 10px;
+	font-size: 35px;
+	margin-bottom: 0px;
+	color: #0d6efd;
+}
+
+#inputsHolder {
+	margin-top: 20px;
+	width: 100%;
+	padding: 20px 0px;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	flex-direction: column;
+}
+#inputsHolder div {
+	padding: 10px 0px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+}
+
+#inputsHolder input {
+    -webkit-transition: 0.5s;
+    padding: 0px 5px;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    width: 85%;
+    border: none;
+    border-bottom: 1px solid #bfbfbf;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: white;
+    color: black;
+    outline: none;
+    margin: 0px;
+}
+
+#inputsHolder input:focus {
+    border-bottom: 1px solid #0d6efd;
+    outline: none;
+}
+
+#passwordHolder input {
+	width: calc(85% - 30px);
+}
+
+i {
+    -webkit-transition: 0.5s;
+    margin: 0px;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    width: 30px;
+    text-align: center;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+#passwordHolder input:focus + i {
+    border-bottom: 1px solid #0d6efd;
+    outline: none;
+}
+
+#CookieButtonHolder {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#cookieHolder {
+	text-align: center;
+	height: 75px;
+	width: 100%;
+	padding: 10px 30px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#cookieHolder * {
+	color: #bfbfbf;
+	margin-top: 20px;
+}
+
+#cookie {
+	cursor: pointer;
+	margin-top: 24px;
+}
+
+#buttonHolder {
+	height: 75px;
+	width: 100%;
+	padding: 10px 30px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#button {
+	height: 35px;
+	width: 120px;
+	font-size: 16px;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	margin-top: 20px;
+	cursor: pointer;
+	background-color: #0d6efd;
+}
+
+
+
