@@ -17,12 +17,39 @@ body {
 	box-shadow: 10px 6px 5px #d9d9d9;
 }
 
+#logoHolder {
+	height: 80px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 350px;
+}
+
 #logo {
 	font-weight: bold;
 	font-size: 28px;
 	color: #0d6efd;
 	text-decoration: none;
 	margin-left: 20px;
+}
+
+#logoutHolder {
+	height: 80px;
+	width: calc(100% - 350px);
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	text-align: center;
+	padding-right: 40px;
+}
+
+#logoutHolder > a {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 18px;
+	text-decoration: none;
 }
 
 /*--------MAIN--------*/

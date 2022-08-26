@@ -12,7 +12,24 @@
 <body>
 
 	<header id="baner">
-		<a href="index.php" id="logo">Egzaminy na prawo jazdy</a>
+		<div id="logoHolder">
+			<?php
+				if(isset($_GET['strona']) && $_GET['strona'] != "login") {
+					echo "<a href='index.php?strona=main' id='logo'>Egzaminy na prawo jazdy</a>";
+				}
+				else {
+					echo "<a href='index.php' id='logo'>Egzaminy na prawo jazdy</a>";
+				}
+			?>
+		</div>
+		<div id="logoutHolder">
+			<?php
+				if(isset($_GET['strona']) && $_GET['strona'] != "login") {
+					echo "<a href='logout.php'>Wyloguj się</a>";
+				}
+
+			?>
+		</div>
 	</header>
 
 
