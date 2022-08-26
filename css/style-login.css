@@ -108,7 +108,8 @@ i {
 
 #cookie {
 	cursor: pointer;
-	margin-top: 24px;
+	margin-top: 22px;
+	margin-left: 5px;
 }
 
 #buttonHolder {

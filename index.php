@@ -25,7 +25,7 @@
 
 	?>
 
-	<div id="main">
+	<div id="pageHolder">
 		<?php
 
 			include($page.".php");

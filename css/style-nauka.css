@@ -1,18 +1,38 @@
 #main {
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex-direction: row;
 }
 
 #questionAndAnswer {
-    width: 600px;
-    height: 500px;
+    min-height: 500px;
+    width: 75%;
     border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#questionHolder {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
     padding: 10px;
+    padding-left: 30px;
+    background-color: #0047b3;
+}
+
+#question {
+    font-weight: bold;
+    margin: 0px;
+    text-align: center;
+    color: white;
 }
 
 .answer {
@@ -23,11 +43,59 @@
     background-color: blue;
 }
 
+#podstForm {
+    padding-top: 30px;
+}
+
+#buttonSpec {
+    width: 100%;
+    padding: 10px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#specForm {
+    width: 100%;
+}
+
+#buttonSpec > .btn {
+    width: 100% !important;
+    margin: 10px;
+}
+
+#buttonsHolder {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+
+#save {
+    width: 309px !important;
+}
+
 .btn {
+    width: 150px !important;
     margin-top: 20px;
     margin-left: 5px;
 }
 
-#holderForA {
-    width: 300px;
+
+@media only screen and (max-width: 1416px) {
+    #save {
+        width: 150px !important;
+    }
+
+    #categoryButtons, #navigationMenu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 }
+
