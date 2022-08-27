@@ -14,7 +14,7 @@
 	<header id="baner">
 		<div id="logoHolder">
 			<?php
-				if(isset($_GET['strona']) && $_GET['strona'] != "login") {
+				if(isset($_GET['strona']) && $_GET['strona'] != "login" && $_GET['strona'] != "error-page/oups") {
 					echo "<a href='index.php?strona=main' id='logo'>Egzaminy na prawo jazdy</a>";
 				}
 				else {
@@ -24,7 +24,7 @@
 		</div>
 		<div id="logoutHolder">
 			<?php
-				if(isset($_GET['strona']) && $_GET['strona'] != "login") {
+				if(isset($_GET['strona']) && $_GET['strona'] != "login" && $_GET['strona'] != "error-page/oups") {
 					echo "<a href='logout.php'>Wyloguj się</a>";
 				}
 
@@ -39,7 +39,7 @@
 		if(isset($_GET['strona'])) {
 			$page = $_GET['strona'];
 		}
-
+ 
 	?>
 
 	<div id="pageHolder">

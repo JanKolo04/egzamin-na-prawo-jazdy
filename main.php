@@ -16,9 +16,15 @@
 
 		function check_save_question() {
 			global $con;
-			
+
 			//user id
 			$Id_user = $_COOKIE['Id_user'];
+
+			//if id_user cookie is null move into error page
+			if($Id_user == null) {
+				//set error cookie to show error page
+				header("Location: index.php?strona=error-page/oups&previous={$_GET['strona']}");
+			}
 
 			$category_array = ['A','B','C','D','T'];
 
