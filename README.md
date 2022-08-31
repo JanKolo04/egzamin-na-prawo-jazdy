@@ -23,3 +23,5 @@ Strona 404 zawiera animacje drzewa napis i przycisk który przenosi do storny na
 
 ## To do
 - [ ] Dodać do funckji warunek jeśli wykryje błąd to `header("...: index.php?strona=error-page/oups&previous=main");`
+
+
