@@ -22,6 +22,8 @@ Strona 404 zawiera animacje drzewa napis i przycisk który przenosi do storny na
 
 
 ## To do
-- [ ] Dodać do funckji warunek jeśli wykryje błąd to `header("...: index.php?strona=error-page/oups&previous=main");`
+- [x] Dodać do funckji warunek jeśli wykryje błąd to `header("...: index.php?strona=error-page/oups&previous=main");`
+- [ ] Gdy wchodzimy na strone z nauka i wybierzemy kat.B to żeby pokazywały się pytania z kat.B
+- [ ] Dodać kolumne ID_pytania do tabel z pytaniami, czyli jeszce raz zaimportować całe pytania wraz z kolumną pytanie_Id
 
 
