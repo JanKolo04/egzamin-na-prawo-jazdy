@@ -30,7 +30,6 @@
 			check_data();
 		}
 
-
 		function get_data() {
 			//array with data
 			$data = [
@@ -49,6 +48,19 @@
 			//user data
 			$user_data = get_data();
 
+			//array with key from user_data
+			$user_data_keys = array_keys($user_data);
+
+			//trabslate array key
+			$transl_array_key = ["Imienia", "Nazwiska", "Emaila", "Loginu", "Hasła"];
+			//check wich dosent filed in 
+			for($i=0; $i<sizeof($user_data); $i++) {
+				if($user_data[$user_data_keys[$i]] == "") {
+					echo "Nie wpisano {$transl_array_key[$i]}";
+					return;
+				}
+			}
+
 			//if user data exist with email or login return 0 value
 			//check
 			$sql = "SELECT * FROM users WHERE Email='{$user_data['Email']}' OR Login='{$user_data['Login']}'";
@@ -60,7 +72,7 @@
 				$insert = "INSERT INTO users(Imie, Nazwisko, Email, Login, Password) VALUES('{$user_data['Name']}','{$user_data['Lastname']}','{$user_data['Email']}','{$user_data['Login']}','{$user_data['Passwd']}')";
 				$insert_query = mysqli_query($con, $insert);
 				//move into login site
-				header("Location: index.php");
+				//header("Location: index.php");
 			}
 			else {
 				if($query_data['Login'] == $user_data['Login']) {

@@ -23,7 +23,7 @@
 			//if id_user cookie is null move into error page
 			if($Id_user == null) {
 				//set error cookie to show error page
-				header("Location: index.php?strona=error-page/oups&previous={$_GET['strona']}");
+				header("Location: index.php?strona=error-page/oups&previous=login");
 			}
 
 			$category_array = ['A','B','C','D','T'];

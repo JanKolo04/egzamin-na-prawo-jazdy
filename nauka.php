@@ -20,6 +20,10 @@
 		$pytanieID = $_GET['pytanie'];
 		$zakres_struktury = $_GET['zakres_struktury'];
 
+		if($pytanieID == null || $zakres_struktury == null) {
+			header("Location: index.php?strona=error-page/oups&previous=main");
+		}
+
 		if($zakres_struktury == "podstawowy") {
 			get_data_podstawowe();
 		}

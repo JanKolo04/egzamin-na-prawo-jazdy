@@ -39,7 +39,18 @@
     <div id="buttonBackHolder">
       <?php
 
-        echo "<a href=index.php?strona={$_GET['previous']} class='btn btn-primary'>Wróć na strone</a>";
+        //previous page
+        $previous_page = $_GET['previous'];
+
+        $link_page = "";
+        if($previous_page != "login") {
+          $link_page = "main";
+        }
+        else {
+          $link_page = "login";
+        }
+
+        echo "<a href=index.php?strona=$link_page class='btn btn-primary'>Wróć na strone</a>";
 
       ?>
     </div>
