@@ -43,6 +43,7 @@
 			$next = ($data_array['Id'])+1;
 			$previous = ($data_array['Id']) - 1;
 
+			//media
 			$media = "data/{$data_array["Media"]}";
 
 			echo
@@ -88,6 +89,9 @@
 			$data_array = mysqli_fetch_array($query);
 			$next = ($data_array['Id'])+1;
 			$previous = ($data_array['Id']) - 1;
+
+			//media
+			$media = "data/{$data_array["Media"]}";
 
 			echo
 			"	

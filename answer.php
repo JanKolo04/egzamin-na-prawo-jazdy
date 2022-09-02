@@ -17,6 +17,9 @@
 		$classNameB = "btn btn-primary";
 		$classNameC = "btn btn-primary";
 
+		//category
+		$category = $_GET['kategoria'];
+
 
 		if(isset($_POST['answer'])) {
 			check_answer();
@@ -34,7 +37,7 @@
 		}
 
 		function get_answer() {
-			global $con;
+			global $con, $category;
 
 			//question
 			$question_Id = $_GET['pytanie'];
@@ -45,13 +48,13 @@
 
 			if($zakres_struktury == "podstawowy") {
 				//array with data about question
-				$podsatwowe = get_question("pytania_podstawowe", $question_Id);
+				$podsatwowe = get_question("pytania_podstawowe_$category", $question_Id);
 				$correct_answer = $podsatwowe['Poprawna_odp'];
 
 			}
 			else {
 				//arraa with data about question
-				$specjalistyczne = get_question("pytania_specjalistyczne", $question_Id);
+				$specjalistyczne = get_question("pytania_specjalistyczne_$category", $question_Id);
 				$correct_answer = $specjalistyczne['Poprawna_odp'];
 			}
 
