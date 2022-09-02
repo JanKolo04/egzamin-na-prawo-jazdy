@@ -11,38 +11,57 @@
 
 		include("connection.php");
 
-		function main() {
+		function delete() {
 			global $con;
 
-			$sql = "SELECT DISTINCT Media FROM pytania_podstawowe WHERE Media LIKE '%wmv%'";
-			$query = mysqli_query($con, $sql);
+			$array = ["a", "b", "c", "d", "t"];
 
-
-			$array_podst = [];
-
-			$count = 0;
-			while($row = mysqli_fetch_array($query)) {
-				$array_podst[$count] = ["Media"=>$row['Media']];
-				$count++;
+			for($i=0; $i<sizeof($array); $i++) {
+				$sql = "DELETE FROM pytania_podstawowe_{$array[$i]}";
+				$query = mysqli_query($con, $sql);
 			}
 
-
-
-			$fp = fopen('media.txt', 'w');
-			for($i=0; $i<sizeof($array_podst); $i++) {
-				echo "1";
-				fwrite($fp, $array_podst[$i]['Media']."\n");
+			for($i=0; $i<sizeof($array); $i++) {
+				$sql = "DELETE FROM pytania_specjalistyczne_{$array[$i]}";
+				$query = mysqli_query($con, $sql);
 			}
-
-			fclose($fp);
-
 
 		}
 
-		main();
+		function podst() {
+			global $con;
 
+			$array = ["a", "b", "c", "d", "t"];
 
-		#W15 3.wmv
+			for($i=0; $i<sizeof($array); $i++) {
+				$sql = "INSERT INTO pytania_podstawowe_{$array[$i]}(Pytanie, Poprawna_odp, Media, Liczba_punktow)
+						SELECT Pytanie, Poprawna_odp, Media, Liczba_punktow
+						FROM pytania
+						WHERE Kategoria LIKE '%{$array[$i]}%' AND Zakres_struktury='PODSTAWOWY';";
+				$query = mysqli_query($con, $sql);
+			}
+
+		}
+
+		function spec() {
+			global $con;
+
+			$array = ["a", "b", "c", "d", "t"];
+
+			$array2 = ["A", "B", "C", "D", "T"];
+
+			for($i=0; $i<sizeof($array); $i++) {
+				$sql = "INSERT INTO pytania_specjalistyczne_{$array[$i]}(Pytanie, Odpowiedz_A, Odpowiedz_B, Odpowiedz_C, Poprawna_odp, Media, Liczba_punktow)
+						SELECT Pytanie, Odpowiedz_A, Odpowiedz_B, Odpowiedz_C, Poprawna_odp, Media, Liczba_punktow
+						FROM pytania
+						WHERE Kategoria LIKE '%{$array2[$i]}%' AND Zakres_struktury='SPECJALISTYCZNY';";
+				$query = mysqli_query($con, $sql);
+
+				echo $sql."</br>";
+			}
+
+		}
+
 	?>
 
 </body>

@@ -19,6 +19,7 @@
 		//global varaibles
 		$pytanieID = $_GET['pytanie'];
 		$zakres_struktury = $_GET['zakres_struktury'];
+		$category = strtolower($_GET['kategoria']);
 
 		if($pytanieID == null || $zakres_struktury == null) {
 			header("Location: index.php?strona=error-page/oups&previous=main");
@@ -32,10 +33,10 @@
 		}
 
 		function get_data_podstawowe() {
-			global $con, $pytanieID, $classNameT, $classNameN;
+			global $con, $pytanieID, $classNameT, $classNameN, $category;
 
 			//get data from table pytania
-			$sql = "SELECT * FROM pytania_podstawowe WHERE Id=$pytanieID";
+			$sql = "SELECT * FROM pytania_podstawowe_$category WHERE Id=$pytanieID";
 			$query = mysqli_query($con, $sql);
 
 			$data_array = mysqli_fetch_array($query);
@@ -78,10 +79,10 @@
 		}
 
 		function get_data_specjalistyczne() {
-			global $con, $pytanieID, $classNameA, $classNameB, $classNameC;
+			global $con, $pytanieID, $classNameA, $classNameB, $classNameC, $category;
 
 			//get data from table pytania
-			$sql = "SELECT * FROM pytania_specjalistyczne WHERE Id=$pytanieID";
+			$sql = "SELECT * FROM pytania_specjalistyczne_$category WHERE Id=$pytanieID";
 			$query = mysqli_query($con, $sql);
 
 			$data_array = mysqli_fetch_array($query);
