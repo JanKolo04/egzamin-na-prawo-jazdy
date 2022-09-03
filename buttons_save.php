@@ -11,10 +11,13 @@
 		include("connection.php");
 
 		if(isset($_POST['save'])) {
-			save_current_question($_GET['zakres_struktury']);
+			save_current_question();
+		}
+		if(isset($_POST['delete'])) {
+			delete_save_question();
 		}
 
-		function save_current_question($zakres_struktury) {
+		function save_current_question() {
 			global $con;
 
 			//user id
@@ -23,6 +26,8 @@
 			$question = $_GET['pytanie'];
 			//category
 			$category = $_GET['kategoria'];
+			//zakres struktury
+			$zakres_struktury = $_GET['zakres_struktury'];
 
 			//check function to choose great way
 			$sql_check = "SELECT * FROM additional_data WHERE Id_user=$Id_user AND Category='$category'";
@@ -42,6 +47,23 @@
 				$query_update = mysqli_query($con, $sql_update);	
 			}
 
+		}
+
+		function delete_save_question() {
+			global $con;
+
+			//user id
+			$Id_user = $_COOKIE['Id_user'];
+			//question
+			$question = $_GET['pytanie'];
+			//category
+			$category = $_GET['kategoria'];
+			//zakres struktury
+			$zakres_struktury = $_GET['zakres_struktury'];
+
+			//update data
+			$sql_update = "UPDATE additional_data SET $zakres_struktury=NULL WHERE Id_user=$Id_user AND Category='$category'";
+			$query_update = mysqli_query($con, $sql_update);
 		}
 
 

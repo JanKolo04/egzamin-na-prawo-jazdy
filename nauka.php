@@ -13,7 +13,7 @@
 	
 		//includes
 		include("connection.php");
-		include("save_current_question.php");
+		include("buttons_save.php");
 		include("answer.php");
 
 		//global varaibles
@@ -129,16 +129,51 @@
 		}
 
 
+		function question_count() {
+			global $con;
+
+			$category = strtolower($_GET['kategoria']);
+
+			//query row
+			$row;
+
+			//count all quesiton in table
+			if($_GET['zakres_struktury'] == "podstawowy") {
+				$sql_podst = "SELECT COUNT(Id) AS 'count' FROM pytania_podstawowe_$category";
+				$query_podst = mysqli_query($con, $sql_podst);
+				//set row
+				$row = mysqli_fetch_array($query_podst);
+			}
+			else {
+				$sql_spec = "SELECT COUNT(Id) AS 'count' FROM pytania_specjalistyczne_$category";
+				$query_spec = mysqli_query($con, $sql_spec);
+				//set row
+				$row = mysqli_fetch_array($query_spec);
+			}
+
+			//set value for var
+			$count_question = $row['count'];
+			//return value
+			return $count_question;
+		}
+
 	?>
 
 		<div id="buttonsHolder">
+			<div id="question_number">
+				<div id="question_number_holder">
+					<p>Zakres struktury: <?php echo $_GET['zakres_struktury']; ?></p>
+					<p>Pytanie: <?php echo $_GET['pytanie']."/".question_count(); ?></p>
+				</div>
+			</div>
 			<div id="categoryButtons">
 				<a class="btn btn-primary" id="podstawowy" href=index.php?strona=nauka&pytanie=1&zakres_struktury=podstawowy&kategoria=B>Podstawowy</a>
 				<a class="btn btn-primary" id="specjalistyczny" href=index.php?strona=nauka&pytanie=1&zakres_struktury=specjalistyczny&kategoria=B>Specjalistyczny</a>
 			</div>
-			<form method="POST">
+			<form id="form_buttons" method="POST">
 				<div>
 					<button id="save" class="btn btn-secondary" type="submit" name="save">Zapamiętaj</button>
+					<button id="delete" class="btn btn-danger" type="submit" name="delete">Usuń zapis</button>
 				</div>
 			</form>
 		</div>

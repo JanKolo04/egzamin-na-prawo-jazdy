@@ -14,6 +14,10 @@
 
 		include("connection.php");
 
+		function print_data($question, $category) {
+			echo "<a class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."'>Nauka</a>";
+		}
+
 		function check_save_question() {
 			global $con;
 
@@ -36,12 +40,18 @@
 				
 				//if user have save question move to this question but if haven't move to first question
 				$row_save = mysqli_fetch_array($query_get_save_question);
+
 				if($query_get_save_question->num_rows != 0) {
 					$question = $row_save['Podstawowy'];
-					echo "<a class='btn btn-primary' href='index.php?strona=nauka&pytanie=".$question."&zakres_struktury=podstawowy&kategoria=".$category_array[$i]."'>Nauka</a>";
+					if($question != "") {
+						print_data($question,$category_array[$i]);
+					}
+					else {
+						print_data(1,$category_array[$i]);
+					}
 				}
 				else {
-					echo "<a class='btn btn-primary' href='index.php?strona=nauka&pytanie=1&zakres_struktury=podstawowy&kategoria=".$category_array[$i]."'>Nauka</a>";
+					print_data(1,$category_array[$i]);
 				}
 				echo "</div>";
 			}
