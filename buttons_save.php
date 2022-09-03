@@ -14,7 +14,7 @@
 			save_current_question();
 		}
 		if(isset($_POST['delete'])) {
-			delete_save_question();
+			delete_saved_question();
 		}
 
 		function save_current_question() {
@@ -49,7 +49,7 @@
 
 		}
 
-		function delete_save_question() {
+		function delete_saved_question() {
 			global $con;
 
 			//user id
