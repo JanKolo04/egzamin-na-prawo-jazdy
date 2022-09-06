@@ -157,6 +157,39 @@
 			return $count_question;
 		}
 
+		function zakres_buttons() {
+			global $con;
+
+			//user id
+			$Id_user = $_COOKIE['Id_user'];
+			//category
+			$category = $_GET['kategoria'];
+
+			//zakres array
+			$zakres_array = ['Podstawowy', 'Specjalistyczny'];
+			//check for zakres exist in table
+			for($i=0; $i<sizeof($zakres_array); $i++) {
+				$sql_get_save_question = "SELECT * FROM additional_data WHERE Id_user=$Id_user AND Category='$category'";
+				$query = mysqli_query($con, $sql_get_save_question);
+
+				if($query->num_rows != 0) {
+					//row
+					$row = mysqli_fetch_array($query);
+					//question
+					$question = $row["{$zakres_array[$i]}"];
+					//if save question dosen't exist create button with saved question
+					if($question != NULL) {
+						echo "<a id=".strtolower($zakres_array[$i])." class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=".strtolower($zakres_array[$i])."&kategoria=".$category."'>{$zakres_array[$i]}</a>";
+					}
+					//if dosen't exist create button with first question
+					else {
+						echo "<a id=".strtolower($zakres_array[$i])." class='btn btn-primary' href='index.php?strona=nauka&pytanie=1&zakres_struktury=".strtolower($zakres_array[$i])."&kategoria=".$category."'>{$zakres_array[$i]}</a>";
+					}
+				}
+			}
+
+		}
+
 	?>
 
 		<div id="buttonsHolder">
@@ -167,8 +200,7 @@
 				</div>
 			</div>
 			<div id="categoryButtons">
-				<a class="btn btn-primary" id="podstawowy" href=index.php?strona=nauka&pytanie=1&zakres_struktury=podstawowy&kategoria=B>Podstawowy</a>
-				<a class="btn btn-primary" id="specjalistyczny" href=index.php?strona=nauka&pytanie=1&zakres_struktury=specjalistyczny&kategoria=B>Specjalistyczny</a>
+				<?php zakres_buttons(); ?>
 			</div>
 			<form id="form_buttons" method="POST">
 				<div>
