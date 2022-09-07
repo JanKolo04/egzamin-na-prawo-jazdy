@@ -8,8 +8,6 @@
 
 	<?php
 
-		include("connection.php");
-
 		//class name for answer button
 		$classNameT = "btn btn-primary";
 		$classNameN = "btn btn-primary";

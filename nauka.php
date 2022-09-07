@@ -10,9 +10,8 @@
 
 	<div id="main">
 	<?php
-	
+
 		//includes
-		include("connection.php");
 		include("buttons_save.php");
 		include("answer.php");
 
@@ -25,15 +24,21 @@
 			header("Location: index.php?strona=error-page/oups&previous=main");
 		}
 
-		if($zakres_struktury == "podstawowy") {
-			get_data_podstawowe();
-		}
-		else {
-			get_data_specjalistyczne();
+		if(isset($_POST['level'])) {
+			set_answer_level($_POST['level']);
 		}
 
-		function get_data_podstawowe() {
-			global $con, $pytanieID, $classNameT, $classNameN, $category;
+
+		if($zakres_struktury == "podstawowy") {
+			get_data_podstawowe($_GET['pytanie']);
+		}
+		else {
+			get_data_specjalistyczne($_GET['pytanie']);
+		}
+		
+
+		function get_data_podstawowe($pytanieID) {
+			global $con, $classNameT, $classNameN, $category;
 
 			//get data from table pytania
 			$sql = "SELECT * FROM pytania_podstawowe_$category WHERE Id=$pytanieID";
@@ -71,16 +76,16 @@
 
 			echo "<div id='navigationMenu'>";
 			if($data_array['Id'] > 1) {
-				echo "<a class='btn btn-danger' href=index.php?strona=nauka&pytanie=$previous&zakres_struktury=podstawowy&kategoria=B>Poprzednie</a> ";
+				echo "<a class='btn btn-danger' href=index.php?strona=nauka&pytanie=$previous&zakres_struktury=podstawowy&kategoria=$category>Poprzednie</a> ";
 			}
 
-			echo "<a class='btn btn-success' href=index.php?strona=nauka&pytanie=$next&zakres_struktury=podstawowy&kategoria=B>Następne</a>";
+			echo "<a class='btn btn-success' href=index.php?strona=nauka&pytanie=$next&zakres_struktury=podstawowy&kategoria=$category>Następne</a>";
 			echo "</div>";
 			
 		}
 
-		function get_data_specjalistyczne() {
-			global $con, $pytanieID, $classNameA, $classNameB, $classNameC, $category;
+		function get_data_specjalistyczne($pytanieID) {
+			global $con, $classNameA, $classNameB, $classNameC, $category;
 
 			//get data from table pytania
 			$sql = "SELECT * FROM pytania_specjalistyczne_$category WHERE Id=$pytanieID";
@@ -120,14 +125,17 @@
 				";
 			echo "<div id='navigationMenu'>";
 			if($data_array['Id'] > 1) {
-				echo "<a class='btn btn-danger navigation' href=index.php?strona=nauka&pytanie=$previous&zakres_struktury=specjalistyczny&kategoria=B>Poprzednie</a> ";
+				echo "<a class='btn btn-danger navigation' href=index.php?strona=nauka&pytanie=$previous&zakres_struktury=specjalistyczny&kategoria=$category>Poprzednie</a> ";
 			}
 
-			echo "<a class='btn btn-success navigation' href=index.php?strona=nauka&pytanie=$next&zakres_struktury=specjalistyczny&kategoria=B>Następne</a>";
+			echo "<a class='btn btn-success navigation' href=index.php?strona=nauka&pytanie=$next&zakres_struktury=specjalistyczny&kategoria=$category>Następne</a>";
 			echo "</div>";
 			
 		}
 
+		function zakres_button($zakres, $question, $category) {
+			echo "<a id=".strtolower($zakres)." class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=".strtolower($zakres)."&kategoria=".$category."'>$zakres</a>";
+		}
 
 		function question_count() {
 			global $con;
@@ -179,14 +187,35 @@
 					$question = $row["{$zakres_array[$i]}"];
 					//if save question dosen't exist create button with saved question
 					if($question != NULL) {
-						echo "<a id=".strtolower($zakres_array[$i])." class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=".strtolower($zakres_array[$i])."&kategoria=".$category."'>{$zakres_array[$i]}</a>";
+						zakres_button($zakres_array[$i], $question, $category);
 					}
 					//if dosen't exist create button with first question
 					else {
-						echo "<a id=".strtolower($zakres_array[$i])." class='btn btn-primary' href='index.php?strona=nauka&pytanie=1&zakres_struktury=".strtolower($zakres_array[$i])."&kategoria=".$category."'>{$zakres_array[$i]}</a>";
+						zakres_button($zakres_array[$i], 1, $category);
 					}
 				}
+				else {
+					zakres_button($zakres_array[$i], 1, $category);
+				}
 			}
+
+		}
+
+
+		function set_answer_level($table) {
+			global $con;
+
+			//function to move question to diferents category
+
+			//zakres
+			$zakres = $_GET['zakres_struktury'];
+			//category
+			$category = $_GET['kategoria'];
+			//question
+			$question = $_GET['pytanie'];
+
+			$sql = "INSERT INTO $table(Id_pytanie, Struktura, Kategoria) VALUES($question, '$zakres', '$category');";
+			$query = mysqli_query($con, $sql);
 
 		}
 
@@ -199,11 +228,18 @@
 					<p>Pytanie: <?php echo $_GET['pytanie']."/".question_count(); ?></p>
 				</div>
 			</div>
+
 			<div id="categoryButtons">
 				<?php zakres_buttons(); ?>
 			</div>
 			<form id="form_buttons" method="POST">
-				<div>
+				<div id="levelButtons">
+					<button name="level" value="dobrze_znam" class="btn btn-success">Dobrze znam</button>
+					<button name="level" name="srednio_znam" class="btn btn-warning">Średnio znam</button>
+					<button name="level" name="slabo_znam" class="btn btn-danger">Słabo znam</button>
+				</div>
+			
+				<div id="rememberButtons">
 					<button id="save" class="btn btn-secondary" type="submit" name="save">Zapamiętaj</button>
 					<button id="delete" class="btn btn-danger" type="submit" name="delete">Usuń zapis</button>
 				</div>

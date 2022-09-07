@@ -8,7 +8,6 @@
 
 	<?php
 
-		include("connection.php");
 
 		if(isset($_POST['save'])) {
 			save_current_question();

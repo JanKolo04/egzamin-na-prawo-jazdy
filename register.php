@@ -24,7 +24,6 @@
 
 		//add header, after registration move to login page
 
-		include("connection.php");
 
 		if(isset($_POST['submitRegister'])) {
 			check_data();

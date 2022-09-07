@@ -12,7 +12,6 @@
 
 	<?php
 
-		include("connection.php");
 
 		function print_data($question, $category) {
 			echo "<a class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."'>Nauka</a>";

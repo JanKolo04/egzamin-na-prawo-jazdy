@@ -41,7 +41,6 @@
 
 	<?php
 
-		include("connection.php");
 
 		if(isset($_COOKIE['login'])) {
 			header("Location: nauka.php?pytanie=1&zakres_struktury=podstawowy");

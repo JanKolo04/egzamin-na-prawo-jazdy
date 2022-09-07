@@ -71,6 +71,17 @@
     margin-bottom: 10px;
 }
 
+#levelButtons {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#levelButtons > .btn {
+    width: 309px !important;
+}
+
 #buttonSpec {
     width: 100%;
     padding: 10px;
@@ -85,7 +96,7 @@
     width: 100%;
 }
 
-#buttonSpec > .btn {
+#buttonSpec > .btn, #form_buttons > #save, #form_buttons > #delete {
     width: 100% !important;
     margin: 10px;
 }
@@ -103,18 +114,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#form_buttons > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
-#save, #delete {
-    width: 309px !important;
+#rememberButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
+
 
 .btn {
     width: 150px !important;
@@ -124,11 +133,11 @@
 
 
 @media only screen and (max-width: 1416px) {
-    #save, #delete {
+    #levelButtons > .btn {
         width: 150px !important;
     }
 
-    #categoryButtons, #navigationMenu {
+    #categoryButtons, #navigationMenu, #rememberButtons {
         display: flex;
         justify-content: center;
         align-items: center;

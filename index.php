@@ -11,6 +11,10 @@
 </head>
 <body>
 
+	<?php
+		include("connection.php");
+	?>
+
 	<header id="baner">
 		<div id="logoHolder">
 			<?php
