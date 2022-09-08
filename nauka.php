@@ -19,10 +19,6 @@
 		$zakres_struktury = $_GET['zakres_struktury'];
 		$category = strtolower($_GET['kategoria']);
 
-
-		//include show question
-		include("show-question.php");
-
 		if($pytanieID == null || $zakres_struktury == null) {
 			header("Location: index.php?strona=error-page/oups&previous=main");
 		}
@@ -30,6 +26,46 @@
 		if(isset($_POST['level'])) {
 			set_answer_level($_POST['level']);
 		}
+
+		function question_count() {
+			global $con;
+
+			$category = strtolower($_GET['kategoria']);
+
+			//query row
+			$row;
+
+			//count all quesiton in table
+			if(isset($_GET['poziom'])) {
+				$sql_level = "SELECT COUNT(Id) AS 'count' FROM {$_GET['poziom']}";
+				$query_level = mysqli_query($con, $sql_level);
+				//set row
+				$row = mysqli_fetch_array($query_level);
+			}
+			else if($_GET['zakres_struktury'] == "podstawowy") {
+				$sql_podst = "SELECT COUNT(Id) AS 'count' FROM pytania_podstawowe_$category";
+				$query_podst = mysqli_query($con, $sql_podst);
+				//set row
+				$row = mysqli_fetch_array($query_podst);
+			}
+			else {
+				$sql_spec = "SELECT COUNT(Id) AS 'count' FROM pytania_specjalistyczne_$category";
+				$query_spec = mysqli_query($con, $sql_spec);
+				//set row
+				$row = mysqli_fetch_array($query_spec);
+			}
+			
+
+			//set value for var
+			$count_question = $row['count'];
+			//return value
+			return $count_question;
+		
+		}
+
+		//include show question
+		include("show-question.php");
+
 
 		function zakres_button($zakres, $question, $category) {
 			echo "<a id=".strtolower($zakres)." class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=".strtolower($zakres)."&kategoria=".$category."'>$zakres</a>";
