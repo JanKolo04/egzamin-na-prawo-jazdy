@@ -22,7 +22,7 @@ Strona 404 zawiera animacje drzewa napis i przycisk który przenosi do storny na
 
 
 ## To do
-- [x] Dodać do funckji warunek jeśli wykryje błąd to `header("...: index.php?strona=error-page/oups&previous=main");`
-- [x] Gdy wchodzimy na strone z nauka i wybierzemy kat.B to żeby pokazywały się pytania z kat.B
+- [ ] Stworzyć więcej tabel na ocenione pytania
+- [ ] Wymyśleć jak zapamitywać ocenione pytanie tzn. zapamitać na którym się skończyło
 
 
