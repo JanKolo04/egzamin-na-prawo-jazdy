@@ -1,15 +1,14 @@
 <?php
-	
-		//includes
-		include("buttons_save.php");
-		include("answer.php");
 
-		if($_GET['znajomosc'] == "dobra") {
+		include("answer.php");
+		include("print_data_func.php");
+
+		if(isset($_GET['poziom'])) {
 			if($zakres_struktury == "podstawowy") {
-				get_data_podstawowe($Id_question);
+				get_data_podstawowe($_SESSION['question']);
 			}
 			else {
-				get_data_specjalistyczne($Id_question);
+				get_data_specjalistyczne($_SESSION['question']);
 			}
 		}
 		else {
@@ -18,9 +17,44 @@
 			}
 			else {
 				get_data_specjalistyczne($_GET['pytanie']);
-			}
+			}	
 		}
 
+		function question_count() {
+			global $con;
+
+			$category = strtolower($_GET['kategoria']);
+
+			//query row
+			$row;
+
+			//count all quesiton in table
+			if(isset($_GET['poziom'])) {
+				$sql_level = "SELECT COUNT(Id) AS 'count' FROM {$_GET['poziom']}";
+				$query_level = mysqli_query($con, $sql_level);
+				//set row
+				$row = mysqli_fetch_array($query_level);
+			}
+			else if($_GET['zakres_struktury'] == "podstawowy") {
+				$sql_podst = "SELECT COUNT(Id) AS 'count' FROM pytania_podstawowe_$category";
+				$query_podst = mysqli_query($con, $sql_podst);
+				//set row
+				$row = mysqli_fetch_array($query_podst);
+			}
+			else {
+				$sql_spec = "SELECT COUNT(Id) AS 'count' FROM pytania_specjalistyczne_$category";
+				$query_spec = mysqli_query($con, $sql_spec);
+				//set row
+				$row = mysqli_fetch_array($query_spec);
+			}
+			
+
+			//set value for var
+			$count_question = $row['count'];
+			//return value
+			return $count_question;
+		
+		}
 
 		function get_data_podstawowe($pytanieID) {
 			global $con, $classNameT, $classNameN, $category;
@@ -30,8 +64,9 @@
 			$query = mysqli_query($con, $sql);
 
 			$data_array = mysqli_fetch_array($query);
-			$next = ($data_array['Id'])+1;
-			$previous = ($data_array['Id']) - 1;
+			//next and previous data
+			$next = $_GET['pytanie'] + 1;
+			$previous = $_GET['pytanie'] - 1;
 
 			//media
 			$media = "data/{$data_array["Media"]}";
@@ -60,11 +95,15 @@
 				";
 
 			echo "<div id='navigationMenu'>";
-			if($data_array['Id'] > 1) {
-				echo "<a class='btn btn-danger' href=index.php?strona=nauka&pytanie=$previous&zakres_struktury=podstawowy&kategoria=$category>Poprzednie</a> ";
+			//print navigation button
+			//previev button
+			if($_GET['pytanie'] > 1) {
+				navigation_buttons("btn btn-danger", $previous, "podstawowy", $category, "Poprzednie");
 			}
-
-			echo "<a class='btn btn-success' href=index.php?strona=nauka&pytanie=$next&zakres_struktury=podstawowy&kategoria=$category>Następne</a>";
+			//next button
+			if($_GET['pytanie'] < question_count()) {
+				navigation_buttons("btn btn-success", $next, "podstawowy", $category, "Następne");
+			}
 			echo "</div>";
 			
 		}
@@ -77,8 +116,9 @@
 			$query = mysqli_query($con, $sql);
 
 			$data_array = mysqli_fetch_array($query);
-			$next = ($data_array['Id'])+1;
-			$previous = ($data_array['Id']) - 1;
+			//next and previous data
+			$next = $_GET['pytanie'] + 1;
+			$previous = $_GET['pytanie'] - 1;
 
 			//media
 			$media = "data/{$data_array["Media"]}";
@@ -109,11 +149,13 @@
 				</div>
 				";
 			echo "<div id='navigationMenu'>";
-			if($data_array['Id'] > 1) {
-				echo "<a class='btn btn-danger navigation' href=index.php?strona=nauka&pytanie=$previous&zakres_struktury=specjalistyczny&kategoria=$category>Poprzednie</a> ";
+			if($_GET['pytanie'] > 1) {
+				navigation_buttons("btn btn-danger", $previous, "specjalistyczny", $category, "Poprzednie");
 			}
-
-			echo "<a class='btn btn-success navigation' href=index.php?strona=nauka&pytanie=$next&zakres_struktury=specjalistyczny&kategoria=$category>Następne</a>";
+			//next button
+			if($_GET['pytanie'] < question_count()) {
+				navigation_buttons("btn btn-success", $next, "specjalistyczny", $category, "Następne");
+			}
 			echo "</div>";
 			
 		}

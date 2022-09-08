@@ -8,6 +8,13 @@
 
 	<?php
 
+		if(isset($_GET['poziom'])) {
+			$question_Id = $_SESSION['question'];
+		}
+		else {
+			$question_Id = $_GET['pytanie'];
+		}
+
 		//class name for answer button
 		$classNameT = "btn btn-primary";
 		$classNameN = "btn btn-primary";
@@ -35,10 +42,8 @@
 		}
 
 		function get_answer() {
-			global $con, $category;
+			global $con, $category, $question_Id;
 
-			//question
-			$question_Id = $_GET['pytanie'];
 			//zakres struktury
 			$zakres_struktury = $_GET['zakres_struktury'];
 

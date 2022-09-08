@@ -12,10 +12,7 @@
 
 	<?php
 
-
-		function print_data($question, $category) {
-			echo "<a class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."'>Nauka</a>";
-		}
+		include("print_data_func.php");
 
 		function check_save_question() {
 			global $con;
@@ -43,14 +40,14 @@
 				if($query_get_save_question->num_rows != 0) {
 					$question = $row_save['Podstawowy'];
 					if($question != "") {
-						print_data($question,$category_array[$i]);
+						nauka_button($question,$category_array[$i]);
 					}
 					else {
-						print_data(1,$category_array[$i]);
+						nauka_button(1,$category_array[$i]);
 					}
 				}
 				else {
-					print_data(1,$category_array[$i]);
+					nauka_button(1,$category_array[$i]);
 				}
 				echo "</div>";
 			}
@@ -62,6 +59,8 @@
 
 
 	</div>
+
+	<a href='index.php?strona=level-question&pytanie=1&zakres_struktury=podstawowy&kategoria=b&poziom=dobrze_znam'>Dobrze znam</a>
 
 
 
