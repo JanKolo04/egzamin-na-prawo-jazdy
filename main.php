@@ -26,6 +26,10 @@
 				header("Location: index.php?strona=error-page/oups&previous=login");
 			}
 
+			/*
+				---check for save question in table---
+				if question isn't saved you open page on first question
+			*/
 			$category_array = ['A','B','C','D','T'];
 
 			for($i=0; $i<5; $i++) {
