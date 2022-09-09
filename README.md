@@ -23,6 +23,7 @@ Strona 404 zawiera animacje drzewa napis i przycisk który przenosi do storny na
 
 ## To do
 - [ ] Stworzyć więcej tabel na ocenione pytania
-- [ ] Wymyśleć jak zapamitywać ocenione pytanie tzn. zapamitać na którym się skończyło
+- [x] Wymyśleć jak zapamitywać ocenione pytanie tzn. zapamitać na którym się skończyło
+- [ ] Jeśli klikniesz na #undercategory to zmien kolor przycisku na #1f80d7
 
 
