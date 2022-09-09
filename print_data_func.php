@@ -18,8 +18,28 @@
 			}
 		}
 
-		function nauka_button($question, $category) {
-			echo "<a class='btn btn-primary' href='index.php?strona=nauka&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."'>Nauka</a>";
+		function nauka_button($page, $question, $category, $level) {
+			echo "<a class='btn btn-primary' href='index.php?strona=$page&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."&poziom=$level'>Nauka</a>";
+		}
+
+
+
+		function rate_category() {
+			//arrays with categories and undercategories
+			$category_array = ['A','B','C','D','T'];
+			$other_category_array = [', A1', ', B1 BE', ', CE C1', ', C1E', ', D1', ', DE'];
+
+			//check which indercategory contain category char
+			for($i=0; $i<sizeof($category_array); $i++) {
+				echo "<a id='rateCategories' href='index.php?strona=main'>Kategorie: $category_array[$i]";
+				for($y=0; $y<sizeof($other_category_array); $y++) {
+					//if udner category contain char form category print undercategory
+					if(str_contains($other_category_array[$y], $category_array[$i])) {
+						echo $other_category_array[$y];
+					}
+				}
+				echo "</a>";
+			}
 		}
 
 	?>

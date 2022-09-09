@@ -19,6 +19,7 @@
 			$category = $_GET['kategoria'];
 			$level = $_GET['poziom'];
 
+			//found record with curent question id
 			$sql_get_data = "SELECT * FROM $level WHERE Id=$question AND Kategoria='$category' AND Struktura='$zakres';";
 			$query = mysqli_query($con, $sql_get_data);
 
@@ -34,6 +35,7 @@
 				$_SESSION['question'] = $row['Id'];
 
 			}
+			
 		}
 		
 		find_question();

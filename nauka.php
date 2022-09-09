@@ -36,7 +36,7 @@
 			$row;
 
 			//count all quesiton in table
-			if(isset($_GET['poziom'])) {
+			if(isset($_GET['poziom']) && $_GET['poziom'] != "Brak") {
 				$sql_level = "SELECT COUNT(Id) AS 'count' FROM {$_GET['poziom']}";
 				$query_level = mysqli_query($con, $sql_level);
 				//set row
