@@ -4,7 +4,7 @@
 		include("print_data_func.php");
 
 		//if poziom varable exist and inst 'Brak' pass $session variable
-		if(isset($_GET['poziom']) && $_GET['poziom'] != "Brak") {
+		if(isset($_GET['poziom']) && $_GET['poziom'] != "Brak" && $_SESSION['question'] != "Brak") {
 			if($zakres_struktury == "podstawowy") {
 				get_data_podstawowe($_SESSION['question']);
 			}

@@ -23,17 +23,22 @@
 			$sql_get_data = "SELECT * FROM $level WHERE Id=$question AND Kategoria='$category' AND Struktura='$zakres';";
 			$query = mysqli_query($con, $sql_get_data);
 
-			$row = mysqli_fetch_array($query);
+			if($query->num_rows > 0) {
+				$row = mysqli_fetch_array($query);
 
-			//check from which table you need get question
-			if($row['Struktura'] == 'podstawowy') {
-				$sql_question = "SELECT * FROM pytania_podstawowe_".strtolower($category)." WHERE Id={$row['Id_pytanie']};";
-				$query_question = mysqli_query($con, $sql_question);
+				//check from which table you need get question
+				if($row['Struktura'] == 'podstawowy') {
+					$sql_question = "SELECT * FROM pytania_podstawowe_".strtolower($category)." WHERE Id={$row['Id_pytanie']};";
+					$query_question = mysqli_query($con, $sql_question);
 
-				$row = mysqli_fetch_array($query_question);
+					$row = mysqli_fetch_array($query_question);
 
-				$_SESSION['question'] = $row['Id'];
-
+					$_SESSION['question'] = $row['Id'];
+				}
+			}
+			else {
+				echo "Error";
+				$_SESSION['question'] = "Brak";
 			}
 			
 		}

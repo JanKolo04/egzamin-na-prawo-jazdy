@@ -33,7 +33,7 @@
 			*/
 			$category_array = ['A','B','C','D','T'];
 
-			for($i=0; $i<5; $i++) {
+			for($i=0; $i<sizeof($category_array); $i++) {
 				echo "<div class='categoryHolder'><h2>{$category_array[$i]}</h2>";
 				//check for exist row with save question
 				$sql_get_save_question = "SELECT * FROM additional_data WHERE Id_user=$Id_user AND Category='{$category_array[$i]}'";
@@ -80,14 +80,15 @@
 			//other category
 			$other_category_array = ['A1', 'B1 BE', 'CE C1,', 'C1E', 'D1', 'DE'];
 			//rate categories
-			$rate_array = ['dobrze_znam'];
+			$rate_array = ['dobrze_znam', "srednio_znam", "slabo_znam"];
 			//rate categories names
-			$rate_name_array = ['Dobrze znam'];
+			$rate_name_array = ['Dobrze znam', "Średnio znam", "Słabo znam"];
 
 			//show all categories with under categories
 			rate_category();
 			echo "</div>";
-			for($i=0; $i<sizeof($category_array); $i++) {
+			echo "<ul>";
+			for($i=0; $i<1; $i++) {
 				//select rate category buttons
 
 				for($y=0; $y<sizeof($rate_array); $y++) {
@@ -103,17 +104,18 @@
 					if($query_get_save_question->num_rows != 0) {
 						$question = $row_save['Podstawowy'];
 						if($question != "") {
-							nauka_button('level-question', $question, $category_array[$i], $rate_array[$y]);
+							rate_button('level-question', $question, $category_array[$i], $rate_array[$y], $rate_name_array[$y], 20);
 						}
 						else {
-							nauka_button('level-question', 1, $category_array[$i], $rate_array[$y]);
+							rate_button('level-question', 1, $category_array[$i], $rate_array[$y], $rate_name_array[$y], 41);
 						}
 					}
 					else {
-						nauka_button('level-question', 1, $category_array[$i], $rate_array[$y]);
+						rate_button('level-question', 1, $category_array[$i], $rate_array[$y], $rate_name_array[$y], 0);
 					}
 				}
 			}
+			echo "</ul>";
 			echo "</div>";
 		}
 

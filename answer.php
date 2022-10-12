@@ -8,7 +8,7 @@
 
 	<?php
 
-		if(isset($_GET['poziom']) && $_GET['poziom'] != "Brak") {
+		if(isset($_GET['poziom']) && $_GET['poziom'] != "Brak" && $_SESSION['question'] != "Brak") {
 			$question_Id = $_SESSION['question'];
 		}
 		else {

@@ -62,3 +62,7 @@
 #rateCategories:visited {
 	background-color: red;
 }
+
+.rate-quesiton-button {
+	width: 100%;
+}

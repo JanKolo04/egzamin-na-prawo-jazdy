@@ -22,6 +22,10 @@
 			echo "<a class='btn btn-primary' href='index.php?strona=$page&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."&poziom=$level'>Nauka</a>";
 		}
 
+		function rate_button($page, $question, $category, $level, $text, $question_count) {
+			echo "<li><a class='rate-quesiton-button' href='index.php?strona=$page&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."&poziom=$level'>".$text." ".$question_count."</a></li>";
+		}
+
 
 
 		function rate_category() {
