@@ -63,6 +63,46 @@
 	background-color: red;
 }
 
+#rate-data {
+	width: 100%;
+	margin-top: 20px;
+	border: 1px solid #d9d9d9;
+}
+
+.rate-question-holder {
+	width: 100%;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	padding: 0px 10px;
+	text-decoration: none;
+	background-color: white;
+}
+
+.rate-question-holder:hover {
+	-webkit-transition: 0.5s;
+	background-color: #f2f2f2;
+}
+
+.rate-question-holder:nth-child(2) {
+	border-top: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.rate-question-data-holder {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.rate-type {
+	width: calc(100% - 20px);
+}
+
+.rate-count {
+	width: 20px;
+}
+
 .rate-quesiton-button {
 	width: 100%;
 }

@@ -87,13 +87,11 @@
 			//show all categories with under categories
 			rate_category();
 			echo "</div>";
-			echo "<ul>";
+			echo "<div id='rate-data'>";
 			for($i=0; $i<1; $i++) {
 				//select rate category buttons
 
 				for($y=0; $y<sizeof($rate_array); $y++) {
-					echo "<p>".$rate_name_array[$y]."</p>";
-
 					//check for exist row with save question
 					$sql_get_save_question = "SELECT * FROM additional_data WHERE Id_user=$Id_user AND Category='{$category_array[$i]}' AND Poziom='{$rate_array[$y]}'";
 					$query_get_save_question = mysqli_query($con, $sql_get_save_question);
@@ -115,7 +113,7 @@
 					}
 				}
 			}
-			echo "</ul>";
+			echo "</div>";
 			echo "</div>";
 		}
 

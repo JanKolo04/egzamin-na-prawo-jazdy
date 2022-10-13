@@ -23,7 +23,19 @@
 		}
 
 		function rate_button($page, $question, $category, $level, $text, $question_count) {
-			echo "<li><a class='rate-quesiton-button' href='index.php?strona=$page&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."&poziom=$level'>".$text." ".$question_count."</a></li>";
+			echo "
+					<a class='rate-question-holder' href='index.php?strona=$page&pytanie=$question&zakres_struktury=podstawowy&kategoria=".$category."&poziom=$level'>
+						<div class='rate-question-data-holder'>
+							<div class='rate-type'>
+								$text
+							</div>
+
+							<div class='rate-count'>
+								$question_count
+							</div>
+						</div>
+					</a>
+				";
 		}
 
 
