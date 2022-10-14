@@ -56,12 +56,11 @@
 	padding: 10px 20px;
 	cursor: pointer;
 	color: white;
+	background: none;
+	border: none;
 	text-decoration: none;
 }
 
-#rateCategories:visited {
-	background-color: red;
-}
 
 #rate-data {
 	width: 100%;
@@ -84,7 +83,7 @@
 	background-color: #f2f2f2;
 }
 
-.rate-question-holder:nth-child(2) {
+.rate-border-style > a:nth-child(2) {
 	border-top: 1px solid #d9d9d9;
 	border-bottom: 1px solid #d9d9d9;
 }
@@ -97,10 +96,13 @@
 
 .rate-type {
 	width: calc(100% - 20px);
+	font-size: 16px;
 }
 
 .rate-count {
 	width: 20px;
+	font-weight: bold;
+	font-size: 20px;
 }
 
 .rate-quesiton-button {
