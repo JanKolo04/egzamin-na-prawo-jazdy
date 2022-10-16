@@ -26,15 +26,20 @@
 				}
 			?>
 		</div>
-		<div id="logoutHolder">
+
+		<div id="my-account-holder">
+			<a href="index.php?strona=my-account">Moje konto</a>
+			<!---
 			<?php
 				if(isset($_GET['strona']) && $_GET['strona'] != "login" && $_GET['strona'] != "error-page/oups") {
 					echo "<a href='logout.php'>Wyloguj się</a>";
 				}
 
 			?>
+			-->
 		</div>
 	</header>
+
 
 
 	<?php

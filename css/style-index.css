@@ -22,7 +22,7 @@ body {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	width: 350px;
+	width: calc(100% - 350px);
 }
 
 #logo {
@@ -33,9 +33,9 @@ body {
 	margin-left: 20px;
 }
 
-#logoutHolder {
+#my-account-holder {
 	height: 80px;
-	width: calc(100% - 350px);
+	width: 350px;
 	display: flex;
 	justify-items: center;
 	align-items: center;
@@ -43,7 +43,7 @@ body {
 	padding-right: 40px;
 }
 
-#logoutHolder > a {
+#my-account-holder > a {
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
